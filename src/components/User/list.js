@@ -425,6 +425,7 @@ class UserList extends Component{
             columns: [
                 {
                     title: "ID",
+                    dataIndex: 'ID',
                     render: (value, record, index) => {
                         return {
                             props: {
@@ -448,20 +449,20 @@ class UserList extends Component{
                 {
                     title: "Firstname",
                     dataIndex: 'firstName',
-                    sorter: (a, b) => a.firstName.toLowerCase().length - b.firstName.toLowerCase().length,
+                    sorter: (a, b) => a.firstName.localeCompare(b.firstName),
                     sortDirections: ['descend', 'ascend']
                 },
                 {
                     title: "Lastname",
                     dataIndex: 'lastName',
-                    sorter: (a, b) => a.lastName.toLowerCase().length - b.lastName.toLowerCase().length,
+                    sorter: (a, b) => a.lastName.localeCompare(b.lastName),
                     sortDirections: ['descend', 'ascend']
                 },
                 {
                     title: "Email Address",
-                    dataIndex: 'email',
-                    sorter: (a, b) => a.email.length - b.email.length,
-                    sortDirections: ['descend', 'ascend']
+                    dataIndex: 'email'
+                    // sorter: (a, b) => a.email.length - b.email.length,
+                    // sortDirections: ['descend', 'ascend']
                 },
                 {
                     title: "Action",

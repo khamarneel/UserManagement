@@ -133,6 +133,21 @@ class UserDetail extends Component{
         })
     }
 
+    deleteHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let set = [ ...this.state.dataset ];
+        let ind;
+        set.map((item, index) => {
+            if(item.id === this.state.activeSet.id){
+                ind = index
+            }
+        })
+        set.splice(ind, 1);
+        localStorage.setItem('dataset', JSON.stringify(set));
+        this.goBack();
+    }
+
     render(){
         return (
             <Fragment>
@@ -166,8 +181,13 @@ class UserDetail extends Component{
 
                     <div className="row">
                         <div className="col-12" style={{marginTop:'40px'}}>
-                            <button onClick={this.goBack} style={{padding: '10px', backgroundColor:'#f44336', color:'white', border:'0px', fontSize:'16px', paddingLeft:'24px', paddingRight:'24px', marginRight:'10px'}}>Back</button>
-                            <button onClick={this.submitHandler} style={{padding: '10px', backgroundColor:'#28a745', color:'white', border:'0px', fontSize:'16px', paddingLeft:'20px', paddingRight:'20px'}}>Submit</button>
+                            <button onClick={this.goBack} style={{padding: '10px', backgroundColor:'#2196f3', color:'white', border:'0px', fontSize:'16px', paddingLeft:'24px', paddingRight:'24px', marginRight:'10px'}}>Back</button>
+                            <button onClick={this.submitHandler} style={{padding: '10px', backgroundColor:'#28a745', color:'white', border:'0px', fontSize:'16px', paddingLeft:'20px', paddingRight:'20px', marginRight:'10px'}}>Submit</button>
+                            {
+                                this.state.edit ? (
+                                    <button onClick={this.deleteHandler} style={{padding: '10px', backgroundColor:'#f44336', color:'white', border:'0px', fontSize:'16px', paddingLeft:'20px', paddingRight:'20px'}}>Delete</button>
+                                ) : null
+                            }
                         </div>
                     </div>
                 </div>
